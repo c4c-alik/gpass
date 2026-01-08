@@ -1,67 +1,62 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import type { Ref } from 'vue';
+import {onMounted, ref, Ref} from 'vue'
 
 interface Password {
-  id: number;
-  account: string;
-  username: string;
-  password: string;
-  created_at: string;
+  id: number
+  account: string
+  username: string
+  password: string
+  created_at: string
 }
 
-const greeting = ref('Hello Wails + Vue3 + SQLite!');
-const passwords: Ref<Password[]> = ref([]);
-const newAccount = ref('');
-const newUsername = ref('');
-const newPassword = ref('');
+const greeting = ref<string>('Hello Wails + Vue3 + SQLite!')
+const passwords: Ref<Password[]> = ref<Password[]>([])
+const newAccount = ref<string>('')
+const newUsername = ref<string>('')
+const newPassword = ref<string>('')
 
 // 示例：调用 Go 后端方法
-const callBackend = async () => {
+const callBackend = async (): Promise<void> => {
   try {
     // 这里是调用 Go 后端方法的示例
     // @ts-ignore
-    const result = await window.go.main.App.Greet('Wails');
-    greeting.value = result;
+    const result: string = await window.go.main.App.Greet('Wails')
+    greeting.value = result
   } catch (error) {
-    console.error('Error calling backend:', error);
+    console.error('Error calling backend:', error)
   }
-};
+}
 
 // 获取所有密码
-const getAllPasswords = async () => {
+const getAllPasswords = async (): Promise<void> => {
   try {
     // @ts-ignore
-    const result = await window.go.main.App.GetAllPasswords();
-    passwords.value = result;
+    const result: Password[] = await window.go.main.App.GetAllPasswords()
+    passwords.value = result
   } catch (error) {
-    console.error('Error getting passwords:', error);
+    console.error('Error getting passwords:', error)
   }
-};
+}
 
 // 添加新密码
-const addPassword = async () => {
+const addPassword = async (): Promise<void> => {
   try {
     // @ts-ignore
-    await window.go.main.App.CreatePassword(
-      newAccount.value,
-      newUsername.value,
-      newPassword.value
-    );
+    await window.go.main.App.CreatePassword(newAccount.value, newUsername.value, newPassword.value)
     // 重置输入框
-    newAccount.value = '';
-    newUsername.value = '';
-    newPassword.value = '';
+    newAccount.value = ''
+    newUsername.value = ''
+    newPassword.value = ''
     // 刷新列表
-    await getAllPasswords();
+    await getAllPasswords()
   } catch (error) {
-    console.error('Error adding password:', error);
+    console.error('Error adding password:', error)
   }
-};
+}
 
-onMounted(() => {
-  getAllPasswords();
-});
+onMounted(async () => {
+  await getAllPasswords()
+})
 </script>
 
 <template>
@@ -82,15 +77,33 @@ onMounted(() => {
         <form @submit.prevent="addPassword">
           <div class="input-group">
             <label for="account">Account:</label>
-            <input id="account" v-model="newAccount" type="text" placeholder="e.g., Google Account" required />
+            <input
+                id="account"
+                v-model="newAccount"
+                type="text"
+                placeholder="e.g., Google Account"
+                required
+            />
           </div>
           <div class="input-group">
             <label for="username">Username:</label>
-            <input id="username" v-model="newUsername" type="text" placeholder="your-email@example.com" required />
+            <input
+                id="username"
+                v-model="newUsername"
+                type="text"
+                placeholder="your-email@example.com"
+                required
+            />
           </div>
           <div class="input-group">
             <label for="password">Password:</label>
-            <input id="password" v-model="newPassword" type="password" placeholder="••••••••" required />
+            <input
+                id="password"
+                v-model="newPassword"
+                type="password"
+                placeholder="••••••••"
+                required
+            />
           </div>
           <button type="submit">Add Password</button>
         </form>
@@ -105,8 +118,10 @@ onMounted(() => {
         <ul v-else class="password-list">
           <li v-for="pwd in passwords" :key="pwd.id" class="password-item">
             <div class="password-info">
-              <strong>{{ pwd.account }}</strong><br>
-              <span>Username: {{ pwd.username }}</span><br>
+              <strong>{{ pwd.account }}</strong
+              ><br/>
+              <span>Username: {{ pwd.username }}</span
+              ><br/>
               <small>Created: {{ new Date(pwd.created_at).toLocaleString() }}</small>
             </div>
           </li>
@@ -135,7 +150,8 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
-h2, h3 {
+h2,
+h3 {
   font-weight: 600;
   margin-bottom: 1rem;
 }
