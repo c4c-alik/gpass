@@ -1,0 +1,11 @@
+{
+  "name": "gpass",
+  "assetdir": "frontend/dist",
+  "wailsjsdir": "frontend/src",
+  "frontend:build": "npm run build",
+  "frontend:install": "npm install",
+  "frontend:dev": "npm run dev",
+  "go": {
+    "module": "gpass"
+  }
+}

@@ -1,0 +1,38 @@
+# Build outputs
+assets/
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Go
+*.exe
+*.dll
+*.so
+*.dylib
+*.mod
+*.sum
+!go.mod
+!go.sum
+
+# Wails
+frontend/dist/
+frontend/node_modules/
+
+# Environment specific
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+/assets/
