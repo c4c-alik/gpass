@@ -11,7 +11,7 @@ interface Password {
 
 const greeting = ref<string>('Hello Wails + Vue3 + SQLite!')
 const passwords: Ref<Password[]> = ref<Password[]>([])
-const newAccount = ref<string>('')
+const newAccount = ref<string>('');
 const newUsername = ref<string>('');
 const newPassword = ref<string>('');
 
