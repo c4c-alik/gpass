@@ -31,8 +31,7 @@ const callBackend = async (): Promise<void> => {
 const getAllPasswords = async (): Promise<void> => {
   try {
     // @ts-ignore
-    const result: Password[] = await window.go.main.App.GetAllPasswords()
-    passwords.value = result
+    passwords.value = await window.go.main.App.GetAllPasswords()
   } catch (error) {
     console.error('Error getting passwords:', error)
   }
