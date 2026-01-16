@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onMounted, ref, Ref} from 'vue'
+import { onMounted, ref, Ref } from 'vue'
 
 interface Password {
   id: number
@@ -78,31 +78,31 @@ onMounted(async () => {
           <div class="input-group">
             <label for="account">Account:</label>
             <input
-                id="account"
-                v-model="newAccount"
-                type="text"
-                placeholder="e.g., Google Account"
-                required
+              id="account"
+              v-model="newAccount"
+              type="text"
+              placeholder="e.g., Google Account"
+              required
             />
           </div>
           <div class="input-group">
             <label for="username">Username:</label>
             <input
-                id="username"
-                v-model="newUsername"
-                type="text"
-                placeholder="your-email@example.com"
-                required
+              id="username"
+              v-model="newUsername"
+              type="text"
+              placeholder="your-email@example.com"
+              required
             />
           </div>
           <div class="input-group">
             <label for="password">Password:</label>
             <input
-                id="password"
-                v-model="newPassword"
-                type="password"
-                placeholder="••••••••"
-                required
+              id="password"
+              v-model="newPassword"
+              type="password"
+              placeholder="••••••••"
+              required
             />
           </div>
           <button type="submit">Add Password</button>
@@ -119,9 +119,9 @@ onMounted(async () => {
           <li v-for="pwd in passwords" :key="pwd.id" class="password-item">
             <div class="password-info">
               <strong>{{ pwd.account }}</strong
-              ><br/>
+              ><br />
               <span>Username: {{ pwd.username }}</span
-              ><br/>
+              ><br />
               <small>Created: {{ new Date(pwd.created_at).toLocaleString() }}</small>
             </div>
           </li>
