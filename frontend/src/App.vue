@@ -11,9 +11,9 @@ interface Password {
 
 const greeting = ref<string>('Hello Wails + Vue3 + SQLite!')
 const passwords: Ref<Password[]> = ref<Password[]>([])
-const newAccount = ref<string>('');
-const newUsername = ref<string>('');
-const newPassword = ref<string>('');
+const newAccount = ref<string>('')
+const newUsername = ref<string>('')
+const newPassword = ref<string>('')
 
 // 示例：调用 Go 后端方法
 const callBackend = async (): Promise<void> => {
