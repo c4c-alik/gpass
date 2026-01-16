@@ -20,8 +20,7 @@ const callBackend = async (): Promise<void> => {
   try {
     // 这里是调用 Go 后端方法的示例
     // @ts-ignore
-    const result: string = await window.go.main.App.Greet('Wails')
-    greeting.value = result
+    greeting.value = await window.go.main.App.Greet('Wails')
   } catch (error) {
     console.error('Error calling backend:', error)
   }
